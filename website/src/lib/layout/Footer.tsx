@@ -4,7 +4,6 @@ import { FaDiscord, FaTwitter, FaGlobe } from "react-icons/fa";
 const Footer = () => {
   return (
     <Flex as="footer" width="full" pb="2vh" px="25px">
-      <Spacer />
       <Text color="gray.400">powered by DAO Quest</Text>
       <Spacer />
       <Flex direction="column">
