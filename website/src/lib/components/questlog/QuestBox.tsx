@@ -12,7 +12,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import assert from "assert";
-import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
@@ -262,27 +261,24 @@ export default function QuestBox() {
           </HStack>
         </GridItem>
         <GridItem pb="20px" as={Flex} rowSpan={2}>
-          <Link href="/profile" passHref>
-            <HStack
-              as={Button}
-              minWidth="50%"
-              px="10px"
-              bg="inherit"
-              color="#EBEBEB"
-              borderRadius="10px"
-              border="2px"
-              align="center"
-              minHeight="full"
-              fontWeight="normal"
-            >
-              <Image boxSize="80px" src={quest.badge.image} />
-              <VStack px="5px" align="flex-start">
-                <Text color="#5F5D59">{quest.badge.title}</Text>
-                <Text color="#8F8E8A">{quest.badge.description}</Text>
-              </VStack>
-              <Spacer />
-            </HStack>
-          </Link>
+          <HStack
+            minWidth="50%"
+            px="10px"
+            bg="inherit"
+            color="#EBEBEB"
+            borderRadius="10px"
+            border="2px"
+            align="center"
+            minHeight="full"
+            fontWeight="normal"
+          >
+            <Image boxSize="80px" src={quest.badge.image} />
+            <VStack px="5px" align="flex-start">
+              <Text color="#5F5D59">{quest.badge.title}</Text>
+              <Text color="#8F8E8A">{quest.badge.description}</Text>
+            </VStack>
+            <Spacer />
+          </HStack>
           <Spacer />
           <VStack minWidth="25%">
             <Spacer />
