@@ -1,6 +1,6 @@
 import {
+  Box,
   Button,
-  HStack,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -11,7 +11,6 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import Confetti from "react-confetti";
 import { useRecoilState } from "recoil";
 
@@ -46,7 +45,7 @@ export default function QuestCompleteModal({
             <Text>{quest.badge.completePopup.introText}</Text>
             <Image src={quest.badge.image} boxSize="160px" />
             <Text>{quest.badge.completePopup.descriptiveText}</Text>
-            <HStack gap={8}>
+            <Box>
               {nextId && (
                 <Button
                   bg="#B7FFDC"
@@ -62,12 +61,7 @@ export default function QuestCompleteModal({
                   Next Quest
                 </Button>
               )}
-              <Link href="/profile" passHref>
-                <Button bg="#B7FFDC" color="green.700">
-                  See Your Badges
-                </Button>
-              </Link>
-            </HStack>
+            </Box>
           </Stack>
         </ModalBody>
         <ModalFooter />
