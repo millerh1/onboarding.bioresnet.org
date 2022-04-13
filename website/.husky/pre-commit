@@ -1,0 +1,5 @@
+#!/bin/sh
+cd daoquest/website
+
+yarn lint-staged
+yarn type-check

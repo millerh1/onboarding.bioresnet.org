@@ -1,2 +1,6 @@
-# Onboarding
-This repo is designed to outline the onboarding process and host related resources. 
+# DAO Quest
+
+This folder contains all the logic for DAO Quest 
+
+website - contains the webapp
+discord_bot - contains the discord bot

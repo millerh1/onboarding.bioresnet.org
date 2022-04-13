@@ -1,0 +1,4 @@
+#!/bin/sh
+cd daoquest/website
+
+yarn commitlint --edit $1
