@@ -62,11 +62,6 @@ export default function QuestCompleteModal({
                   Next Quest
                 </Button>
               )}
-              <Link href="/profile" passHref>
-                <Button bg="#B7FFDC" color="green.700">
-                  See Your Badges
-                </Button>
-              </Link>
             </HStack>
           </Stack>
         </ModalBody>
