@@ -52,7 +52,7 @@ export default function LoginModal({ isOpen, onClose }: ILoginModal) {
   const handleDiscordLogin = async () => {
     const { error } = await signIn(
       { provider: "discord" },
-      { redirectTo: `https://daoquest-labdao.vercel.app${router.asPath}` }
+      { redirectTo: `https://onboarding.labdao.com${router.asPath}` }
     );
 
     // TODO(jqphu): error handling.
@@ -71,7 +71,7 @@ export default function LoginModal({ isOpen, onClose }: ILoginModal) {
         email: values.email,
       },
       {
-        redirectTo: `https://daoquest-labdao.vercel.app/success`,
+        redirectTo: `https://onboarding.labdao.com/success`,
       }
     );
 
