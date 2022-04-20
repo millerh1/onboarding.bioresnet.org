@@ -749,23 +749,21 @@ export const QUESTS: IQuestCategory[] = [
                   Find out about what each of these groups does here:
                 </Text>
                 <br />
-                <Link href="/working-group" passHref>
-                  <Center>
-                    <Button
-                      boxShadow="base"
-                      maxHeight="40%"
-                      bg="#B7FFDC"
-                      color="green.700"
-                      fontWeight="small"
-                      minWidth="40%"
-                      size="lg"
-                      isDisabled={isLocked}
-                      onClick={onNext}
-                    >
-                      Learn More
-                    </Button>
-                  </Center>
-                </Link>
+                <Center>
+                  <Button
+                    boxShadow="base"
+                    maxHeight="40%"
+                    bg="#B7FFDC"
+                    color="green.700"
+                    fontWeight="small"
+                    minWidth="40%"
+                    size="lg"
+                    isDisabled={isLocked}
+                    onClick={onNext}
+                  >
+                    Learn More
+                  </Button>
+                </Center>
                 <br />
                 You can join groups in the{" "}
                 <a
