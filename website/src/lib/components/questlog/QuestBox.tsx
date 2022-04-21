@@ -10,6 +10,7 @@ import {
   useDisclosure,
   HStack,
   VStack,
+  Stack,
 } from "@chakra-ui/react";
 import assert from "assert";
 import { useState, useEffect } from "react";
@@ -137,7 +138,7 @@ export default function QuestBox() {
 
     if (state === QuestState.Locked) {
       return (
-        <Button maxHeight="40%" fontWeight="small" minWidth="full" size="lg">
+        <Button fontWeight="small" minWidth="full" size="lg">
           <Image boxSize="26px" src="/lock.png" />
         </Button>
       );
@@ -145,13 +146,7 @@ export default function QuestBox() {
 
     if (state === QuestState.Done) {
       return (
-        <Button
-          maxHeight="40%"
-          fontWeight="small"
-          minWidth="full"
-          size="lg"
-          isDisabled
-        >
+        <Button fontWeight="small" minWidth="full" size="lg" isDisabled>
           Completed
         </Button>
       );
@@ -160,7 +155,6 @@ export default function QuestBox() {
     return (
       <Button
         boxShadow="base"
-        maxHeight="40%"
         bg="#B7FFDC"
         color="green.700"
         fontWeight="small"
@@ -206,22 +200,23 @@ export default function QuestBox() {
 
   return (
     <Box
-      px="10"
+      px={["4", "4", "10"]}
       pt="6"
-      pb="6"
+      pb={["16", "16", "6"]}
       borderRadius="5px"
       minHeight="60vh"
       boxShadow="lg"
       border="1px"
       borderColor="gray.100"
+      width="100%"
+      flex={1}
     >
       <LoginModal isOpen={loginIsOpen} onClose={loginOnClose} />
-      <Grid templateRows="repeat(10, 1fr)" minHeight="inherit">
+      <Grid templateRows="repeat(8, 1fr)" minHeight="inherit">
         <GridItem rowSpan={7}>
           <Flex
             alignItems="stretch"
             flexDir="column"
-            align=""
             color="#5F5D59"
             fontSize={17}
             minHeight="full"
@@ -230,39 +225,51 @@ export default function QuestBox() {
               {quest.titleImage ? (
                 <Image
                   objectFit="contain"
-                  boxSize="60px"
+                  boxSize={["30px", "60px"]}
                   src={quest.titleImage}
                 />
               ) : null}
-              <Text pl="1" fontWeight="semibold" fontSize={38}>
+              <Text pl="1" fontWeight="semibold" fontSize={[24, 38]}>
                 {quest.title}
               </Text>
             </HStack>
-            {quest.body(state === QuestState.Locked, onNext)}
+            <Box maxW="100%" overflow="hidden">
+              {quest.body(state === QuestState.Locked, onNext)}
+            </Box>
           </Flex>
         </GridItem>
-        <GridItem as={Flex} rowSpan={1} maxWidth="50%" flexDir="column">
-          <HStack as={Flex} minHeight="full">
-            <Flex flexDir="column" minHeight="full">
-              <Spacer />
+        <GridItem as={Flex} rowSpan={1} maxWidth={["100%", "50%"]}>
+          <Stack
+            as={Flex}
+            direction="row"
+            minHeight="full"
+            width="100%"
+            alignItems="center"
+            justifyItems="center"
+            alignContent="center"
+          >
+            <Box>
               <Text color="gray.500" fontWeight="semibold" fontSize={28}>
                 Reward
               </Text>
-            </Flex>
-            <Spacer />
-            <Flex flexDir="column" minHeight="full">
-              <Spacer />
+            </Box>
+            <Box>
               {quest.questCompletionStep && (
                 <Text color="gray.500" fontSize={16}>
                   step {quest.questCompletionStep}
                 </Text>
               )}
-            </Flex>
-          </HStack>
+            </Box>
+          </Stack>
         </GridItem>
-        <GridItem pb="20px" as={Flex} rowSpan={2}>
+        <GridItem
+          pb="20px"
+          as={Flex}
+          rowSpan={2}
+          flexDirection={["column", "column", "row"]}
+        >
           <HStack
-            minWidth="50%"
+            minWidth={["100%", "50%"]}
             px="10px"
             bg="inherit"
             color="#EBEBEB"
@@ -281,6 +288,7 @@ export default function QuestBox() {
           </HStack>
           <Spacer />
           <VStack minWidth="25%">
+            <Spacer />
             <Spacer />
             {questActionButton()}
           </VStack>

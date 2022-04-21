@@ -13,6 +13,7 @@ import {
   Stack,
   Text,
   Flex,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 
 interface IQuestIntroModal {
@@ -21,8 +22,9 @@ interface IQuestIntroModal {
 }
 
 export default function QuestIntroModal({ isOpen, onClose }: IQuestIntroModal) {
+  const size = useBreakpointValue({ base: "sm", md: "3xl", lg: "5xl" });
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered size="5xl">
+    <Modal onClose={onClose} isOpen={isOpen} isCentered size={size}>
       <ModalOverlay backdropFilter="blur(5px)" />
       <ModalContent pt="3">
         <ModalHeader fontSize={32} textAlign="center">
@@ -34,7 +36,11 @@ export default function QuestIntroModal({ isOpen, onClose }: IQuestIntroModal) {
             Learn about LabDAO and our community of scientists by completing
             Quests!
           </Text>
-          <Flex gap={4} mx={4}>
+          <Flex
+            gap={4}
+            mx={4}
+            direction={{ base: "column-reverse", lg: "row" }}
+          >
             <Center>
               <Stack align="left" spacing="8">
                 <Box>

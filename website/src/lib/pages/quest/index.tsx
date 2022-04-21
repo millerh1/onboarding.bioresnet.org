@@ -1,4 +1,4 @@
-import { Box, Center, Progress, Text, HStack, Stack } from "@chakra-ui/react";
+import { Box, Center, Progress, Text, Stack } from "@chakra-ui/react";
 import type { ReactElement } from "react";
 import { useRecoilValue } from "recoil";
 
@@ -25,14 +25,18 @@ const Quest = () => {
           </Text>
         </Box>
         <Box width="inherit" minHeight="80%">
-          <HStack spacing="1px" alignItems="top">
-            <Box p="4" minWidth="30%">
+          <Stack
+            spacing={4}
+            alignItems="top"
+            direction={["column", "column", "row"]}
+          >
+            <Box p="1" minWidth={["100%", "30%"]}>
               <QuestTable />
             </Box>
-            <Box borderRadius="5px" w="70%" minHeight="100%" p="4">
+            <Box borderRadius="5px" flex={1} minHeight="100%" p="1">
               <QuestBox />
             </Box>
-          </HStack>
+          </Stack>
         </Box>
       </Stack>
     </Center>

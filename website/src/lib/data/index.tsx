@@ -9,7 +9,6 @@ import {
   ListItem,
   Spacer,
 } from "@chakra-ui/react";
-import Link from "next/link";
 
 import { DAO, DeSci, Intro, WorkingGroup } from "lib/components/reading";
 
@@ -340,7 +339,7 @@ export const QUESTS: IQuestCategory[] = [
                 flexGrow="1"
                 flexDir="column"
                 minHeight="full"
-                minWidth="full"
+                width="100%"
                 pt="15px"
               >
                 <Spacer />
@@ -352,7 +351,7 @@ export const QUESTS: IQuestCategory[] = [
                     color="green.700"
                     fontWeight="small"
                     minWidth="60%"
-                    size="lg"
+                    size="md"
                     onClick={onNext}
                     isDisabled={isLocked}
                   >
@@ -422,7 +421,7 @@ export const QUESTS: IQuestCategory[] = [
                     color="green.700"
                     fontWeight="small"
                     minWidth="60%"
-                    size="lg"
+                    size="md"
                     onClick={onNext}
                     isDisabled={isLocked}
                   >
@@ -637,7 +636,7 @@ export const QUESTS: IQuestCategory[] = [
                       color="green.700"
                       fontWeight="small"
                       minWidth="60%"
-                      size="lg"
+                      size="md"
                       isDisabled={isLocked}
                     >
                       Subscribe to the LabDAO Calendar

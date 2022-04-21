@@ -30,23 +30,41 @@ const Header = () => {
   };
 
   return (
-    <Box as="nav" bg="bg-surface" boxShadow="sm" px={8} py={4} mb={4}>
+    <Box
+      as="nav"
+      // bg="bg-surface"
+      bg="white"
+      boxShadow="sm"
+      px={[4, 8]}
+      py={4}
+      mb={4}
+      position="sticky"
+      top={0}
+      left={0}
+      width="100%"
+      zIndex={999}
+    >
       <LoginModal isOpen={isOpen} onClose={onClose} />
-      <Flex>
+      <Flex alignItems="center" justifyItems="center">
         <Link href="https://labdao.com" passHref>
           <a>
-            <HStack width="33%" spacing="3">
-              <Image boxSize="60px" src="/labdao_logo.png" />
+            <HStack
+              width="33%"
+              spacing="3"
+              alignItems="center"
+              justifyItems="center"
+            >
+              <Image boxSize={["30px", "60px"]} src="/labdao_logo.png" />
               <HStack spacing="0">
                 <Text
                   textAlign="left"
-                  fontSize={40}
+                  fontSize={[20, 40]}
                   fontWeight="semibold"
                   fontFamily="Inert, sans-serif"
                 >
                   Lab
                 </Text>
-                <Text textAlign="left" fontWeight="light" fontSize={40}>
+                <Text textAlign="left" fontWeight="light" fontSize={[20, 40]}>
                   DAO
                 </Text>
               </HStack>

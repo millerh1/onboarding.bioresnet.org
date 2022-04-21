@@ -17,6 +17,7 @@ import {
   ModalFooter,
   ModalBody,
   Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -93,9 +94,15 @@ export default function LoginModal({ isOpen, onClose }: ILoginModal) {
     onClose();
   };
 
+  const size = useBreakpointValue({
+    base: "md",
+    md: "xl",
+    lg: "3xl",
+  });
+
   if (attemptingLoginEmail) {
     return (
-      <Modal onClose={onCloseCallback} isOpen={isOpen} isCentered size="3xl">
+      <Modal onClose={onCloseCallback} isOpen={isOpen} isCentered size={size}>
         <ModalOverlay backdropFilter="blur(5px)" />
         <ModalContent pt="3">
           <ModalHeader textAlign="center" m={4}>
@@ -120,14 +127,14 @@ export default function LoginModal({ isOpen, onClose }: ILoginModal) {
 
   // TODO: make this module do things! Also specialze per quest
   return (
-    <Modal onClose={onCloseCallback} isOpen={isOpen} isCentered size="3xl">
+    <Modal onClose={onCloseCallback} isOpen={isOpen} isCentered size={size}>
       <ModalOverlay backdropFilter="blur(5px)" />
       <ModalContent pt="3">
         <ModalHeader textAlign="center" m={4}>
           <Center mb={4}>
             <Image src="/location.png" boxSize={78} />
           </Center>
-          <Text fontSize="4xl">Start your journey</Text>
+          <Text fontSize={["2xl", "4xl"]}>Start your journey</Text>
         </ModalHeader>
         <ModalBody textAlign="center" m={4}>
           <Container maxW="xl">
@@ -139,13 +146,15 @@ export default function LoginModal({ isOpen, onClose }: ILoginModal) {
               </Stack>
               <Stack spacing="6" align="center">
                 <Button
-                  minW="sm"
+                  size="lg"
+                  minW={{ base: "xxs", md: "sm", lg: "sm" }}
                   bg="#B7FFDC"
                   color="green.700"
                   isDisabled={isSubmitting}
                   onClick={handleDiscordLogin}
                   rightIcon={<Image src="/discord_green.png" height="20px" />}
                   iconSpacing={3}
+                  autoFocus={false}
                 >
                   Continue with Discord
                 </Button>
@@ -160,7 +169,9 @@ export default function LoginModal({ isOpen, onClose }: ILoginModal) {
                   <form onSubmit={handleSubmit(onSubmitEmail)}>
                     <FormControl isInvalid={errors.email}>
                       <Input
+                        minW={{ base: "xxs", md: "sm", lg: "sm" }}
                         id="email"
+                        size="lg"
                         placeholder="example@email.com"
                         {...register("email", {
                           required: "Please enter your email address",
@@ -177,7 +188,8 @@ export default function LoginModal({ isOpen, onClose }: ILoginModal) {
                     </FormControl>
                     <br />
                     <Button
-                      minW="sm"
+                      minW={{ base: "xxs", md: "sm", lg: "sm" }}
+                      size="lg"
                       bg="#B7FFDC"
                       color="green.700"
                       type="submit"

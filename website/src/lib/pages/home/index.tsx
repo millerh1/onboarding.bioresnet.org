@@ -1,4 +1,4 @@
-import { Box, Spacer, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, useBreakpointValue, Center } from "@chakra-ui/react";
 import Image from "next/image";
 import type { ReactElement } from "react";
 
@@ -6,39 +6,65 @@ import ButtonLink from "lib/components/flow/ButtonLink";
 import { Layout } from "lib/layout/index";
 
 const Home = () => {
+  const size = useBreakpointValue([80, 120]);
   return (
-    <Flex direction="column" align="center" h="90vh">
-      <Spacer />
-      <Flex alignItems="center" direction="column" gap={20} textAlign="center">
-        <Flex alignItems="center" direction="column" gap={4}>
-          <Text fontSize="5xl">Welcome to</Text>
+    <Center
+      height="100%"
+      width="100%"
+      minHeight={{
+        base: "80vh",
+        md: "80vh",
+        lg: "85vh",
+      }}
+      px={6}
+    >
+      <Flex
+        direction="column"
+        alignContent="center"
+        justifyContent="center"
+        alignItems="center"
+        gap={16}
+      >
+        <Flex
+          direction="column"
+          alignContent="center"
+          justifyContent="center"
+          alignItems="center"
+          gap={8}
+        >
+          <Text fontSize={["xl", "3xl", "4xl", "5xl"]}>Welcome to</Text>
           <Image
             priority
             src="/labdao_logo.png"
-            width={198}
-            height={198}
+            width={size}
+            height={size}
             layout="fixed"
             alt="Launching Illustration"
           />
-          <Text fontSize="5xl">
+          <Text fontSize={["xl", "3xl", "4xl", "5xl"]}>
             <Text fontWeight="bold" as="span">
               Lab
             </Text>
             DAO
           </Text>
         </Flex>
-        <Text fontSize="3xl" fontWeight="normal">
+        <Text fontSize={["lg", "xl", "2xl", "3xl"]} fontWeight="normal">
           An open, community-run network of wet & dry laboratories.
         </Text>
-        <Box>
+        <Box
+          display="flex"
+          flexDir="column"
+          justifyContent="center"
+          alignItems="center"
+          gap={8}
+        >
           <Text fontSize="md" fontWeight="normal">
             Let's complete a few quests to bring you up to speed with LabDAO
           </Text>
           <ButtonLink href="/quest" text="Begin Questing" />
         </Box>
       </Flex>
-      <Spacer />
-    </Flex>
+    </Center>
   );
 };
 

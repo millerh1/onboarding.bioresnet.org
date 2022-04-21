@@ -1,4 +1,4 @@
-import { Flex, Box, ChakraProvider, Spacer } from "@chakra-ui/react";
+import { Spacer, Flex, Box, ChakraProvider } from "@chakra-ui/react";
 import { DefaultSeo } from "next-seo";
 import Head from "next/head";
 import type { ReactNode } from "react";
@@ -30,7 +30,7 @@ export const Layout = ({ children, useHeader, useFooter }: LayoutProps) => {
       <DefaultSeo {...defaultSEOConfig} />
       <Provider value={supabase}>
         <RecoilRoot>
-          <Flex minH="100vh" flexDir="column">
+          <Flex minH="100vh" flexDir="column" position="relative">
             {useHeader && <Header />}
             <Box transition="0.5s ease-out">{children}</Box>
             <Spacer />

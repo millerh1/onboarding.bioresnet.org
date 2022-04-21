@@ -1,6 +1,5 @@
 import {
   Button,
-  HStack,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -10,6 +9,7 @@ import {
   Image,
   Stack,
   Text,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import Confetti from "react-confetti";
@@ -32,9 +32,9 @@ export default function QuestCompleteModal({
 }: IQuestCompleteModal) {
   const nextId = getNextQuestId(quest.id);
   const [, setSelectedQuestId] = useRecoilState(selectedQuestState);
-
+  const size = useBreakpointValue({ base: "md", md: "xl", lg: "3xl" });
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered size="3xl">
+    <Modal onClose={onClose} isOpen={isOpen} isCentered size={size}>
       <Confetti />
       <ModalOverlay />
       <ModalContent pt="3">
@@ -46,7 +46,7 @@ export default function QuestCompleteModal({
             <Text>{quest.badge.completePopup.introText}</Text>
             <Image src={quest.badge.image} boxSize="160px" />
             <Text>{quest.badge.completePopup.descriptiveText}</Text>
-            <HStack gap={8}>
+            <Stack gap={[2, 3, 8]} direction={["column", "column", "row"]}>
               {nextId && (
                 <Button
                   bg="#B7FFDC"
@@ -62,7 +62,12 @@ export default function QuestCompleteModal({
                   Next Quest
                 </Button>
               )}
-            </HStack>
+              <Link href="/profile" passHref>
+                <Button bg="#B7FFDC" color="green.700">
+                  See Your Badges
+                </Button>
+              </Link>
+            </Stack>
           </Stack>
         </ModalBody>
         <ModalFooter />
