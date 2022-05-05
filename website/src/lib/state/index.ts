@@ -1,13 +1,9 @@
 import assert from "assert";
 import { atom, selectorFamily, selector } from "recoil";
-import { recoilPersist } from "recoil-persist";
 
 import { QUESTS, QUEST_ID_ARRAY, QuestState } from "lib/data";
-import { supabase } from "lib/util/supabase_client";
 
-const { persistAtom } = recoilPersist();
-
-interface User {
+export interface User {
   /// Whether the user is authenticated/logged in.
   authenticated: boolean;
 
@@ -36,82 +32,15 @@ export const UnknownUser = {
   completedQuestIds: [],
 };
 
-/// Update the local state of a profile based on the database.
-export const updateProfile = (setUserState: (user: User) => void) => {
-  const user = supabase.auth.user();
-  if (user) {
-    supabase
-      .from("profiles")
-      .select(
-        `
-        id,
-        full_name,
-        avatar_url,
-        quests (
-          quest_id
-        )`
-      )
-      .eq("id", user.id)
-      .single()
-      .then(({ data: profile, error }) => {
-        // User might not exist, which is fine.
-        // TODO(jqphu): other errors?
-        if (!error) {
-          assert(user.email);
-
-          setUserState({
-            authenticated: true,
-            email: user.email,
-            id: profile.id,
-            picture: profile.avatar_url,
-            fullName: profile.full_name,
-            completedQuestIds: profile.quests.map(
-              (quest: { quest_id: string }) => quest.quest_id
-            ),
-          });
-        }
-      });
-  }
-};
-
 /// The current user state.
 export const userState = atom<User>({
   key: "userState",
   default: UnknownUser,
   effects: [
-    ({ setSelf }) => {
-      // Trigger an initial retrieval of the user
-      updateProfile(setSelf);
-
-      // Listen to any auth changes.
-      supabase.auth.onAuthStateChange(async (event, session) => {
-        if (event === "SIGNED_IN") {
-          const user = session?.user;
-          const metadata = user?.user_metadata;
-
-          if (metadata) {
-            // TODO(jqphu): we probably shouldn't update this *every* login...
-            const updates = {
-              id: user.id,
-              discord_name: metadata.name,
-              full_name: metadata.full_name,
-              avatar_url: metadata.picture,
-              updated_at: new Date(),
-            };
-
-            const { error } = await supabase.from("profiles").upsert(updates, {
-              returning: "minimal",
-            });
-
-            if (error) {
-              throw new Error(JSON.stringify(error, null, 2));
-            }
-
-            updateProfile(setSelf);
-          }
-        } else if (event === "SIGNED_OUT") {
-          setSelf(UnknownUser);
-        }
+    ({ onSet }) => {
+      onSet((value) => {
+        // Store the local storage value.
+        window.localStorage.setItem("labdao-user", JSON.stringify(value));
       });
     },
   ],
@@ -188,8 +117,14 @@ export const questState = selectorFamily({
 export const selectedQuestState = atom<string>({
   key: "selectedQuestState",
   default: QUESTS[0].content.id,
-  effects_UNSTABLE: [persistAtom],
-  // TODO(jqphu): set default as the last task selected by the user.
+  effects: [
+    ({ onSet }) => {
+      onSet((value) => {
+        // Store the local storage value.
+        window.localStorage.setItem("labdao-selectedQuestState", value);
+      });
+    },
+  ],
 });
 
 export const isCurrentlySelectedState = selectorFamily({
@@ -198,12 +133,6 @@ export const isCurrentlySelectedState = selectorFamily({
     (id: string) =>
     ({ get }) =>
       get(selectedQuestState) === id,
-});
-
-export const selectedAccordionIndexState = atom<number>({
-  key: "selectedAccordionIndexState",
-  default: 0,
-  effects_UNSTABLE: [persistAtom],
 });
 
 export const progressState = selector<number>({

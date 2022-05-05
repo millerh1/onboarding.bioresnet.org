@@ -6,19 +6,15 @@ import {
   Box,
   Button,
   VStack,
-  Image,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
-import { QUESTS, QuestState } from "lib/data";
+import { QUESTS, QuestState, SUB_QUEST_ID_TO_QUEST_NUMBER } from "lib/data";
 import type { IQuestCategory, ISubQuest } from "lib/data";
-import {
-  selectedQuestState,
-  questState,
-  selectedAccordionIndexState,
-} from "lib/state";
+import { selectedQuestState, questState } from "lib/state";
 
 function categorySwitch(
   categoryState: QuestState,
@@ -171,17 +167,15 @@ function QuestTableCategory({
 
 // Outer table that holds the quest categories and quests.
 export default function QuestTable() {
-  const [lastIndex, setIndex] = useRecoilState(selectedAccordionIndexState);
+  const [index, setIndex] = useState(0);
+  const selectedQuestId = useRecoilValue(selectedQuestState);
+
+  useEffect(() => {
+    setIndex(SUB_QUEST_ID_TO_QUEST_NUMBER[selectedQuestId]);
+  }, [selectedQuestId]);
 
   return (
-    <Accordion
-      boxShadow="base"
-      allowToggle
-      defaultIndex={lastIndex}
-      onChange={(expandedIndex: number) => {
-        setIndex(expandedIndex);
-      }}
-    >
+    <Accordion boxShadow="base" allowToggle index={index}>
       <Box
         flex="1"
         textAlign="center"

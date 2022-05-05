@@ -1,5 +1,4 @@
-import { Flex, Button, Text } from "@chakra-ui/react";
-import { FaDiscord, FaTwitter, FaGlobe } from "react-icons/fa";
+import { Flex, Text } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
@@ -45,29 +44,6 @@ const Footer = () => {
           rel="noreferrer"
         >
           <Text fontSize={["sm", "md", "xl"]}> Privacy Policy</Text>
-        </a>
-      </Flex>
-
-      <Flex
-        minWidth="8%"
-        gap={8}
-        justifyContent={["center", "center", "flex-end"]}
-        flex={1}
-      >
-        <a target="_blank" href="https://www.labdao.com/" rel="noreferrer">
-          <Button bg="#B7FFDC" color="green.700" p="2" boxShadow="md">
-            <FaGlobe size="md" />
-          </Button>
-        </a>
-        <a target="_blank" href="https://twitter.com/lab_dao" rel="noreferrer">
-          <Button bg="#B7FFDC" color="green.700" p="2" boxShadow="md">
-            <FaTwitter size="md" />
-          </Button>
-        </a>
-        <a target="_blank" href="http://discord.gg/labdao" rel="noreferrer">
-          <Button bg="#B7FFDC" color="green.700" p="2" boxShadow="md">
-            <FaDiscord size="md" />
-          </Button>
         </a>
       </Flex>
     </Flex>

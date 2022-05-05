@@ -1,4 +1,3 @@
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
 
@@ -12,9 +11,8 @@ const DAO_CONTENT = [
     body: (
       <>
         <Link href="https://ethereum.org/en/dao/" passHref>
-          <ChakraLink isExternal>
+          <ChakraLink isExternal textDecoration="underline">
             Decentralized autonomous organizations (DAOs)
-            <ExternalLinkIcon mx="2px" />
           </ChakraLink>
         </Link>{" "}
         are "an effective and safe way to work with like-minded folks around the
@@ -34,8 +32,7 @@ const DAO_CONTENT = [
         <br />
         <br />
         What exactly a DAO is (and what a DAO isn’t) is a currently the topic of
-        much debate. Later in your onboarding we’ll share some further resources
-        on DAOs if you’re interested in the topic.
+        much debate.
       </>
     ),
   },
@@ -45,13 +42,19 @@ const DAO_CONTENT = [
       "The first tool you’ll need to get in touch with other members of LabDAO.",
     body: (
       <>
-        Discord is functionally similar to Slack, but it has a bit more
-        modularity.
+        <Link href="https://discord.com" passHref>
+          <ChakraLink isExternal textDecoration="underline">
+            Discord
+          </ChakraLink>
+        </Link>{" "}
+        is functionally similar to Slack, but it has a bit more modularity.
         <br />
         <br />
         Download Discord and create and account{" "}
         <Link href="https://discord.com" passHref>
-          <ChakraLink isExternal>here</ChakraLink>
+          <ChakraLink isExternal textDecoration="underline">
+            here
+          </ChakraLink>
         </Link>
         . Once you’ve created an account your Discord username will be in the
         format: username#1234 keep this username handy, we’ll ask you for it

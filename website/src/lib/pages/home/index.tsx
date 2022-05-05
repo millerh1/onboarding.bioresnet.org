@@ -12,9 +12,9 @@ const Home = () => {
       height="100%"
       width="100%"
       minHeight={{
-        base: "80vh",
-        md: "80vh",
-        lg: "85vh",
+        base: "70vh",
+        md: "75vh",
+        lg: "80vh",
       }}
       px={6}
     >
@@ -70,7 +70,7 @@ const Home = () => {
 
 Home.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout useHeader={false} useFooter>
+    <Layout useHeader useFooter>
       {page}
     </Layout>
   );

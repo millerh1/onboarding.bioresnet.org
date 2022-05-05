@@ -16,7 +16,7 @@ const Quest = () => {
       <Stack width="95%" align="center">
         <Box width="inherit">
           <Text color="gray.400" fontWeight="medium" fontSize={17}>
-            Quest Board Progress
+            Progress
           </Text>
           <Progress value={progressRounded} colorScheme="brand" />
           <Text color="gray.400" fontWeight="medium" fontSize={17}>

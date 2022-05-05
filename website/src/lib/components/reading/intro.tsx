@@ -64,6 +64,7 @@ const INTRO_CONTENT = [
       "A variety of people interested in technology, the scientific community and novel coordination.",
     body: (
       <>
+        In order to create better tools and systems to accelerate life sciences,
         LabDAO has a need for diverse members from a number of different
         backgrounds. The LabDAO community is currently organized thematically in
         three working groups:

@@ -10,26 +10,19 @@ import {
   useDisclosure,
   HStack,
   VStack,
-  Stack,
 } from "@chakra-ui/react";
 import assert from "assert";
 import { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useSetRecoilState, useRecoilValue } from "recoil";
 
-import LoginModal from "lib/components/login";
 import {
   getContentById,
   getNextQuestId,
   QuestState,
   QuestType,
 } from "lib/data";
-import {
-  userState,
-  selectedQuestState,
-  questState,
-  updateProfile,
-} from "lib/state";
-import { supabase } from "lib/util/supabase_client";
+import type { User } from "lib/state";
+import { userState, selectedQuestState, questState } from "lib/state";
 
 import QuestCompleteModal from "./QuestCompleteModal";
 import QuestIntroModal from "./QuestIntroModal";
@@ -37,18 +30,34 @@ import QuestIntroModal from "./QuestIntroModal";
 // Box on the left side of the screen
 export default function QuestBox() {
   const [shouldOpenIntro, setShouldOpenIntro] = useState(true);
-  const [userInfo, setUserInfo] = useRecoilState(userState);
+  const setUserInfo = useSetRecoilState(userState);
   const [selectedQuestId, setSelectedQuestId] =
     useRecoilState(selectedQuestState);
   const quest = getContentById(selectedQuestId);
   const state = useRecoilValue(questState(quest.id));
   const nextId = getNextQuestId(quest.id);
-  const [next, setNext] = useState(false);
+
+  // Next is set to the questId if user has pressed next.
+  const [next, setNext] = useState<string>("0");
 
   useEffect(() => {
-    // Reset next if we select a new quest.
-    setNext(false);
+    setNext("");
   }, [selectedQuestId]);
+
+  useEffect(() => {
+    const localUserInfo = window.localStorage.getItem("labdao-user");
+    if (localUserInfo) {
+      setUserInfo(JSON.parse(localUserInfo) as User);
+    }
+  }, [setUserInfo]);
+
+  useEffect(() => {
+    // Load the default value from local storage.
+    const value = window.localStorage.getItem("labdao-selectedQuestState");
+    if (value) {
+      setSelectedQuestId(value);
+    }
+  }, [setSelectedQuestId]);
 
   useEffect(() => {
     const hasOpenedIntro = window.localStorage.getItem("hasOpenedIntro");
@@ -61,11 +70,6 @@ export default function QuestBox() {
     isOpen: completeIsOpen,
     onOpen: completeOnOpen,
     onClose: completeOnClose,
-  } = useDisclosure();
-  const {
-    isOpen: loginIsOpen,
-    onOpen: loginOnOpen,
-    onClose: loginOnClose,
   } = useDisclosure();
   const { isOpen: introIsOpen, onClose: introOnClose } = useDisclosure({
     defaultIsOpen: true,
@@ -80,52 +84,42 @@ export default function QuestBox() {
 
   // Completing the quest is the same as just opening the modal.
   const completeQuest = async () => {
-    if (userInfo.authenticated) {
-      const upsertArray = [
-        {
-          quest_id: selectedQuestId,
-          parent_id: userInfo.id,
-          created_at: new Date(),
-        },
-      ];
-
-      // Complete parent quest if it exists
-      if (
-        quest.completeParentId &&
-        selectedQuestId !== quest.completeParentId
-      ) {
-        upsertArray.push({
-          quest_id: quest.completeParentId,
-          parent_id: userInfo.id,
-          created_at: new Date(),
-        });
+    setUserInfo((oldUserInfo) => {
+      if (oldUserInfo.completedQuestIds.includes(selectedQuestId)) {
+        return oldUserInfo;
       }
 
-      // Use upsert to just be safe. If somehow we complete the quest twice we
-      // don't get repeated entries.
-      const { error } = await supabase.from("quests").upsert(upsertArray, {
-        returning: "minimal",
+      return {
+        ...oldUserInfo,
+        completedQuestIds: [...oldUserInfo.completedQuestIds, selectedQuestId],
+      } as User;
+    });
+
+    // Complete parent quest if it exists
+    if (quest.completeParentId && selectedQuestId !== quest.completeParentId) {
+      setUserInfo((oldUserInfo) => {
+        // Just to be safe.
+        if (
+          quest.completeParentId &&
+          oldUserInfo.completedQuestIds.includes(quest.completeParentId)
+        ) {
+          return oldUserInfo;
+        }
+
+        return {
+          ...oldUserInfo,
+          completedQuestIds: [
+            ...oldUserInfo.completedQuestIds,
+            quest.completeParentId,
+          ],
+        } as User;
       });
+    }
 
-      // This is duplicate completion error. We can just safely ignore this.
-      // TODO(jqphu): log something, this shouldn't really happen.
-      assert(!error || error.code === "23505");
-
-      // To make sure we updated the database correctly we're going to just
-      // re-read the data. This will make it clear if we messed it up.
-      // Obviously, this is much slower and less than ideal but I doubt
-      // performance is an issue for completing quests.
-      // TODO(jqphu): only update the local state and not the entire DB.
-      updateProfile(setUserInfo);
-
-      if (quest.completeParentId) {
-        completeOnOpen();
-      } else if (nextId) {
-        setSelectedQuestId(nextId);
-      }
-    } else {
-      // Try to log the user in.
-      loginOnOpen();
+    if (quest.completeParentId) {
+      completeOnOpen();
+    } else if (nextId) {
+      setSelectedQuestId(nextId);
     }
   };
 
@@ -133,6 +127,10 @@ export default function QuestBox() {
   const questActionButton = () => {
     const { type } = quest;
     if (type === QuestType.None) {
+      return null;
+    }
+
+    if (type === QuestType.Next && !nextId) {
       return null;
     }
 
@@ -148,6 +146,22 @@ export default function QuestBox() {
       return (
         <Button fontWeight="small" minWidth="full" size="lg" isDisabled>
           Completed
+        </Button>
+      );
+    }
+
+    if (type === QuestType.Next && nextId) {
+      return (
+        <Button
+          boxShadow="base"
+          bg="#B7FFDC"
+          color="green.700"
+          fontWeight="small"
+          minWidth="full"
+          size="lg"
+          onClick={() => setSelectedQuestId(nextId)}
+        >
+          Get Started
         </Button>
       );
     }
@@ -168,19 +182,15 @@ export default function QuestBox() {
   };
 
   const onNext = () => {
-    if (!userInfo.authenticated) {
-      loginOnOpen();
-    } else {
-      setNext(true);
-    }
+    setNext(selectedQuestId);
   };
 
   const onFinishedReading = () => {
     completeQuest();
-    setNext(false);
+    setNext("");
   };
 
-  if (next) {
+  if (next === selectedQuestId) {
     assert(quest.reading);
     return (
       <Box
@@ -188,7 +198,7 @@ export default function QuestBox() {
         pt="6"
         pb="6"
         borderRadius="5px"
-        minHeight="60vh"
+        minHeight="40vh"
         boxShadow="lg"
         border="1px"
         borderColor="gray.100"
@@ -204,14 +214,13 @@ export default function QuestBox() {
       pt="6"
       pb={["16", "16", "6"]}
       borderRadius="5px"
-      minHeight="60vh"
+      minHeight="40vh"
       boxShadow="lg"
       border="1px"
       borderColor="gray.100"
       width="100%"
       flex={1}
     >
-      <LoginModal isOpen={loginIsOpen} onClose={loginOnClose} />
       <Grid templateRows="repeat(8, 1fr)" minHeight="inherit">
         <GridItem rowSpan={7}>
           <Flex
@@ -234,33 +243,13 @@ export default function QuestBox() {
               </Text>
             </HStack>
             <Box maxW="100%" overflow="hidden">
-              {quest.body(state === QuestState.Locked, onNext)}
-            </Box>
-          </Flex>
-        </GridItem>
-        <GridItem as={Flex} rowSpan={1} maxWidth={["100%", "50%"]}>
-          <Stack
-            as={Flex}
-            direction="row"
-            minHeight="full"
-            width="100%"
-            alignItems="center"
-            justifyItems="center"
-            alignContent="center"
-          >
-            <Box>
-              <Text color="gray.500" fontWeight="semibold" fontSize={28}>
-                Reward
-              </Text>
-            </Box>
-            <Box>
-              {quest.questCompletionStep && (
-                <Text color="gray.500" fontSize={16}>
-                  step {quest.questCompletionStep}
-                </Text>
+              {quest.body(
+                state === QuestState.Locked,
+                onNext,
+                onFinishedReading
               )}
             </Box>
-          </Stack>
+          </Flex>
         </GridItem>
         <GridItem
           pb="20px"
@@ -268,24 +257,6 @@ export default function QuestBox() {
           rowSpan={2}
           flexDirection={["column", "column", "row"]}
         >
-          <HStack
-            minWidth={["100%", "50%"]}
-            px="10px"
-            bg="inherit"
-            color="#EBEBEB"
-            borderRadius="10px"
-            border="2px"
-            align="center"
-            minHeight="full"
-            fontWeight="normal"
-          >
-            <Image boxSize="80px" src={quest.badge.image} />
-            <VStack px="5px" align="flex-start">
-              <Text color="#5F5D59">{quest.badge.title}</Text>
-              <Text color="#8F8E8A">{quest.badge.description}</Text>
-            </VStack>
-            <Spacer />
-          </HStack>
           <Spacer />
           <VStack minWidth="25%">
             <Spacer />

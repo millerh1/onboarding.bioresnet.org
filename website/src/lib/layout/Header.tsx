@@ -1,34 +1,18 @@
 import {
+  ButtonGroup,
+  Button,
   Box,
-  useDisclosure,
   HStack,
   Image,
-  Spacer,
+  Center,
   Flex,
-  Button,
   Text,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { useSignOut } from "react-supabase";
-import { useRecoilValue } from "recoil";
-
-import LoginModal from "lib/components/login";
-import { userState } from "lib/state";
+import { FaDiscord, FaTwitter, FaFileAlt } from "react-icons/fa";
 
 // Header that appears on some screens.
 const Header = () => {
-  const userInfo = useRecoilValue(userState);
-  const signOut = useSignOut()[1];
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const signInCallback = () => {
-    onOpen();
-  };
-
-  const signOutCallback = () => {
-    signOut();
-  };
-
   return (
     <Box
       as="nav"
@@ -36,7 +20,7 @@ const Header = () => {
       bg="white"
       boxShadow="sm"
       px={[4, 8]}
-      py={4}
+      py={2}
       mb={4}
       position="sticky"
       top={0}
@@ -44,17 +28,20 @@ const Header = () => {
       width="100%"
       zIndex={999}
     >
-      <LoginModal isOpen={isOpen} onClose={onClose} />
       <Flex alignItems="center" justifyItems="center">
-        <Link href="https://labdao.com" passHref>
-          <a>
-            <HStack
-              width="33%"
-              spacing="3"
-              alignItems="center"
-              justifyItems="center"
-            >
+        <HStack
+          width="33%"
+          spacing="3"
+          alignItems="center"
+          justifyItems="center"
+        >
+          <Link href="https://labdao.com" passHref>
+            <a>
               <Image boxSize={["30px", "60px"]} src="/labdao_logo.png" />
+            </a>
+          </Link>
+          <Link href="https://labdao.com" passHref>
+            <a>
               <HStack spacing="0">
                 <Text
                   textAlign="left"
@@ -68,25 +55,51 @@ const Header = () => {
                   DAO
                 </Text>
               </HStack>
-            </HStack>
-          </a>
-        </Link>
-        <Spacer />
-        <HStack spacing="2">
-          <Button
-            boxShadow="md"
-            bg="#B7FFDC"
-            color="green.700"
-            px="10"
-            py="1"
-            fontWeight="medium"
-            onClick={userInfo.authenticated ? signOutCallback : signInCallback}
-          >
-            {userInfo.authenticated
-              ? userInfo.fullName || userInfo.email
-              : "Sign In"}
-          </Button>
+            </a>
+          </Link>
         </HStack>
+        <Center width="33%" alignItems="center">
+          <ButtonGroup spacing="5">
+            <a target="_blank" href="http://discord.gg/labdao" rel="noreferrer">
+              <Button
+                leftIcon={<FaDiscord size="25" />}
+                bg="#B7FFDC"
+                color="green.700"
+                boxShadow="md"
+                minWidth="100"
+              >
+                Discord
+              </Button>
+            </a>
+            <a
+              target="_blank"
+              href="https://twitter.com/lab_dao"
+              rel="noreferrer"
+            >
+              <Button
+                leftIcon={<FaTwitter size="25" />}
+                bg="#B7FFDC"
+                color="green.700"
+                boxShadow="md"
+                minWidth="100"
+              >
+                Twitter
+              </Button>
+            </a>
+            <a target="_blank" href="https://docs.labdao.com" rel="noreferrer">
+              <Button
+                leftIcon={<FaFileAlt size="25" />}
+                bg="#B7FFDC"
+                color="green.700"
+                boxShadow="md"
+                minWidth="100"
+              >
+                Docs
+              </Button>
+            </a>
+          </ButtonGroup>
+        </Center>
+        <Flex width="33%" />
       </Flex>
     </Box>
   );

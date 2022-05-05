@@ -11,7 +11,6 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import Link from "next/link";
 import Confetti from "react-confetti";
 import { useRecoilState } from "recoil";
 
@@ -45,7 +44,7 @@ export default function QuestCompleteModal({
           <Stack align="center" spacing="4">
             <Text>{quest.badge.completePopup.introText}</Text>
             <Image src={quest.badge.image} boxSize="160px" />
-            <Text>{quest.badge.completePopup.descriptiveText}</Text>
+            <Text>{quest.badge.completePopup?.descriptiveText}</Text>
             <Stack gap={[2, 3, 8]} direction={["column", "column", "row"]}>
               {nextId && (
                 <Button
@@ -62,11 +61,6 @@ export default function QuestCompleteModal({
                   Next Quest
                 </Button>
               )}
-              <Link href="/profile" passHref>
-                <Button bg="#B7FFDC" color="green.700">
-                  See Your Badges
-                </Button>
-              </Link>
             </Stack>
           </Stack>
         </ModalBody>
