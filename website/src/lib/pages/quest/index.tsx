@@ -1,8 +1,18 @@
-import { Box, Center, Progress, Text, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Center,
+  Spacer,
+  Progress,
+  Text,
+  Image,
+  Stack,
+} from "@chakra-ui/react";
 import type { ReactElement } from "react";
 import { useRecoilValue } from "recoil";
 
 import { QuestBox, QuestTable } from "lib/components/questlog";
+import { CONTRIBUTOR_BADGE } from "lib/data";
 import { Layout } from "lib/layout/index";
 import { progressState } from "lib/state";
 
@@ -14,15 +24,19 @@ const Quest = () => {
   return (
     <Center>
       <Stack width="95%" align="center">
-        <Box width="inherit">
-          <Text color="gray.400" fontWeight="medium" fontSize={17}>
-            Progress
-          </Text>
+        <Box width="inherit" px={2}>
+          <Flex alignItems="center">
+            <Text color="gray.400" fontWeight="medium" fontSize={16}>
+              Progress - {progressRounded}%
+            </Text>
+            <Spacer />
+            <Image
+              alt="badge for completing onboarding"
+              src={CONTRIBUTOR_BADGE.image}
+              boxSize="40px"
+            />
+          </Flex>
           <Progress value={progressRounded} colorScheme="brand" />
-          <Text color="gray.400" fontWeight="medium" fontSize={17}>
-            {/* Progress rounded to nearest 5 */}
-            {progressRounded}%
-          </Text>
         </Box>
         <Box width="inherit" minHeight="80%">
           <Stack

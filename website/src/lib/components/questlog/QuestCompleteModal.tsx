@@ -32,6 +32,11 @@ export default function QuestCompleteModal({
   const nextId = getNextQuestId(quest.id);
   const [, setSelectedQuestId] = useRecoilState(selectedQuestState);
   const size = useBreakpointValue({ base: "md", md: "xl", lg: "3xl" });
+
+  if (!quest.badge) {
+    return null;
+  }
+
   return (
     <Modal onClose={onClose} isOpen={isOpen} isCentered size={size}>
       <Confetti />

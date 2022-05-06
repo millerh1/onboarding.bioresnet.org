@@ -63,9 +63,8 @@ export interface IQuest {
   // TODO(jqphu): return ISubQuest or IQuestCategory instead of relying on yet another type.
   type: QuestType;
 
-  // Every category has a badge
-  // TODO(jqphu): likely refactor this so we just point to the parent.
-  badge: IBadge;
+  // Only some tasks have badges.
+  badge?: IBadge;
 
   // If this is set, it's the last quest and we should also complete the parent given by this id.
   // TODO(jqphu): we need to just return the ISubQuest or IQuestCategory union
@@ -113,75 +112,15 @@ export interface IBadge {
   image: string;
 }
 
-const SEEDLING_BADGE = {
-  title: "LabDAO Seedling",
-  description: "Got started in LabDAO",
+export const CONTRIBUTOR_BADGE = {
+  title: "Onboarded into LabDAO",
+  description: "",
   completePopup: {
-    introText:
-      "For learning the LabDAO Basics, you've earned the LabDAO Seedling badge.",
-  },
-  image: "/badges/seedling.png",
-};
-
-const DESCI_BADGE = {
-  title: "Learning about DeSci",
-  description: "Read the basics on DeSci",
-  completePopup: {
-    introText:
-      "You've earned the Learning about DeSci badge for journeying through this chapter.",
-  },
-  image: "/badges/testtube.png",
-};
-
-const DAO_BADGE = {
-  title: "Learning about DAOs",
-  description: "Read the basics on DAOs",
-  completePopup: {
-    introText:
-      "You've earned the Learning about DAOs badge for journeying through this chapter.",
-  },
-  image: "/badges/dao_badge.png",
-};
-
-const HELLO_BADGE = {
-  title: "LabDAO Socialite",
-  description: "Met the community",
-  completePopup: {
-    introText:
-      "You've earned the LabDAO Socialite badge for journeying through this chapter.",
-  },
-  image: "/badges/hello.png",
-};
-
-const CONTRIBUTOR_BADGE = {
-  title: "LabDAO Contributor",
-  description: "Made my first contribution",
-  completePopup: {
-    introText:
-      "You've earned the LabDAO Contributor badge for journeying through this chapter.",
+    introText: "You've made it all the way!",
+    descriptiveText:
+      "You've earned the Onboarded into LabDAO badge. This will be given to you later as a permanent record that you completed the LabDAO onboarding!",
   },
   image: "/badges/scientist.png",
-};
-
-const ONBOARDED_BADGE = {
-  title: "Onboarded to LabDAO",
-  description: "Ready to dive in!",
-  completePopup: {
-    introText:
-      "You've earned the Onboarded to LabDAO badge for journeying through this chapter.",
-  },
-  image: "/badges/labdao.png",
-};
-
-const ALWAYS_IMPROVING_BADGE = {
-  title: "Always Improving",
-  description: "Shared feedback to improve onboarding",
-  completePopup: {
-    introText:
-      "For sharing feedback, you've earned the Always Improving badge.",
-    descriptiveText: "That's all there is to onboarding. Welcome to LabDAO!",
-  },
-  image: "/badges/always_improving.png",
 };
 
 const LAB_DAO_BASICS_ID = "8e97016c-97e0-41a3-be3b-67ec5195f282";
@@ -241,7 +180,6 @@ export const QUESTS: IQuestCategory[] = [
       },
       titleImage: "labdao_logo.png",
       type: QuestType.None,
-      badge: SEEDLING_BADGE,
       completeParentId: LAB_DAO_BASICS_ID,
     },
   },
@@ -251,7 +189,6 @@ export const QUESTS: IQuestCategory[] = [
     image_locked: GRAY_ATOM_IMAGE,
     content: {
       id: DESCI_CATEGORY_ID,
-      badge: DESCI_BADGE,
       completeParentId: DESCI_CATEGORY_ID,
       body: (
         isLocked?: boolean,
@@ -332,7 +269,6 @@ export const QUESTS: IQuestCategory[] = [
       id: DAO_CATEGORY_ID,
       type: QuestType.None,
       completeParentId: DAO_CATEGORY_ID,
-      badge: DAO_BADGE,
       body: (
         isLocked?: boolean,
         onNext?: () => void,
@@ -408,7 +344,6 @@ export const QUESTS: IQuestCategory[] = [
     content: {
       titleImage: GREEN_HELLO_IMAGE,
       id: ONBOARDING_CATEGORY_ID,
-      badge: HELLO_BADGE,
       completeParentId: ONBOARDING_CATEGORY_ID,
       title: "Tell us about yourself",
       type: QuestType.Complete,
@@ -457,7 +392,6 @@ export const QUESTS: IQuestCategory[] = [
     image_locked: GRAY_BOX_IMAGE,
     content: {
       id: CONTRIBUTOR_CATEGORY_ID,
-      badge: ONBOARDED_BADGE,
       completeParentId: CONTRIBUTOR_CATEGORY_ID,
       type: QuestType.Complete,
       titleImage: GREEN_BOX_IMAGE,
@@ -515,8 +449,7 @@ export const QUESTS: IQuestCategory[] = [
     image_locked: GRAY_HEADS_IMAGE,
     content: {
       id: TELL_US_CATEGORY_ID,
-      badge: CONTRIBUTOR_BADGE,
-      titleImage: GRAY_HEADS_IMAGE,
+      titleImage: GREEN_HEADS_IMAGE,
       title: "Connect with our community",
       body: () => (
         <Flex flexGrow={1} flexDir="column" minHeight="full">
@@ -530,7 +463,6 @@ export const QUESTS: IQuestCategory[] = [
         listTitle: "Calendar",
         content: {
           id: "4c70819d-d020-4a6e-962d-a75196dc7c94",
-          badge: HELLO_BADGE,
           title: "The LabDAO Calendar",
           body: (isLocked?: boolean) => (
             <Flex flexGrow={1} flexDir="column" minHeight="full">
@@ -592,9 +524,8 @@ export const QUESTS: IQuestCategory[] = [
           id: "fead500e-63b5-4b39-bc54-0851dd886d6a",
           title: "Your first contribution",
           type: QuestType.Complete,
-          badge: HELLO_BADGE,
           completeParentId: TELL_US_CATEGORY_ID,
-          body: (isLocked: boolean) => (
+          body: () => (
             <Flex flexGrow={1} flexDir="column" minHeight="full">
               <Text>
                 You've made it far traveller!
@@ -609,21 +540,6 @@ export const QUESTS: IQuestCategory[] = [
                   Introduce yourself in the #introductions channel and explore
                   what’s going on within your working group of choice.
                 </Text>
-                <br />
-                <VStack>
-                  <Button
-                    boxShadow="base"
-                    maxHeight="40%"
-                    bg="#B7FFDC"
-                    color="green.700"
-                    fontWeight="small"
-                    minWidth="60%"
-                    size="md"
-                    isDisabled={isLocked}
-                  >
-                    Login with Discord
-                  </Button>
-                </VStack>
               </Text>
             </Flex>
           ),
@@ -638,6 +554,7 @@ export const QUESTS: IQuestCategory[] = [
     image_locked: "/gray_feedback.png",
     content: {
       id: SHARE_FEEDBACK_ID,
+      badge: CONTRIBUTOR_BADGE,
       title: "Share feedback",
       body: () => (
         <Flex flexGrow={1} flexDir="column" minHeight="full">
@@ -682,7 +599,6 @@ export const QUESTS: IQuestCategory[] = [
       ),
       titleImage: "green_feedback.png",
       type: QuestType.Complete,
-      badge: ALWAYS_IMPROVING_BADGE,
       completeParentId: SHARE_FEEDBACK_ID,
     },
   },
@@ -698,7 +614,7 @@ export const SUB_QUEST_ID_TO_QUEST_NUMBER: Record<string, number> = {
   [CONTRIBUTOR_CATEGORY_ID]: 4,
 
   [TELL_US_CATEGORY_ID]: 5,
-  "1bdcde5d-fbb6-44b3-a323-c4ba72410448": 5,
+  "4c70819d-d020-4a6e-962d-a75196dc7c94": 5,
   "fead500e-63b5-4b39-bc54-0851dd886d6a": 5,
 
   [SHARE_FEEDBACK_ID]: 6,

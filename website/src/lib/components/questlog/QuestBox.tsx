@@ -116,7 +116,8 @@ export default function QuestBox() {
       });
     }
 
-    if (quest.completeParentId) {
+    // Popup if they have a badge.
+    if (quest.badge) {
       completeOnOpen();
     } else if (nextId) {
       setSelectedQuestId(nextId);
