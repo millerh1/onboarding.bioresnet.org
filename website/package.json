@@ -16,7 +16,7 @@
     "up-latest": "yarn up --latest",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main",
-    "prepare": "cd ../../ && husky install daoquest/website/.husky"
+    "prepare": "cd ../../../ && husky install daoquest/labdao/website/.husky"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
@@ -24,7 +24,10 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@supabase/supabase-js": "^1.33.3",
+    "@types/logrocket-react": "^3.0.0",
     "framer-motion": "^5.6.0",
+    "logrocket": "^3.0.0",
+    "logrocket-react": "^5.0.1",
     "next": "^12.1.0",
     "next-pwa": "^5.4.6",
     "next-seo": "^5.3.0",
@@ -35,8 +38,7 @@
     "react-hotkeys-hook": "^3.4.4",
     "react-icons": "^4.3.1",
     "react-supabase": "^0.2.0",
-    "recoil": "^0.7.0",
-    "recoil-persist": "^4.1.0"
+    "recoil": "^0.7.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^16.2.1",

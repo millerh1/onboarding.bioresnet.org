@@ -1,4 +1,6 @@
 import { Spacer, Flex, Box, ChakraProvider } from "@chakra-ui/react";
+import LogRocket from "logrocket";
+import setupLogRocketReact from "logrocket-react";
 import { DefaultSeo } from "next-seo";
 import Head from "next/head";
 import type { ReactNode } from "react";
@@ -17,6 +19,12 @@ type LayoutProps = {
   useHeader: boolean;
   useFooter: boolean;
 };
+
+if (typeof window !== "undefined") {
+  LogRocket.init("wemtww/labdao");
+  // plugins should also only be initialized when in the browser
+  setupLogRocketReact(LogRocket);
+}
 
 export const Layout = ({ children, useHeader, useFooter }: LayoutProps) => {
   return (
