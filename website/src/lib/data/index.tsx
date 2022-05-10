@@ -1,4 +1,5 @@
 import {
+  Center,
   Box,
   Flex,
   chakra,
@@ -9,6 +10,7 @@ import {
   ListItem,
   Spacer,
 } from "@chakra-ui/react";
+import { PopupButton } from "@typeform/embed-react";
 
 import { DAO, DeSci, Intro } from "lib/components/reading";
 
@@ -571,30 +573,20 @@ export const QUESTS: IQuestCategory[] = [
             feedback, and you’ll earn the Always Improving badge below.
           </Text>
           <br />
-          <Flex flexGrow={1} flexDir="column" minHeight="full" minWidth="full">
-            <Spacer />
-            <VStack>
-              <Spacer />
-              <a
-                href="https://form.typeform.com/to/toRPr1qW"
-                target="_blank"
-                rel="noreferrer"
+          <Center>
+            <PopupButton id="toRPr1qW">
+              <Button
+                boxShadow="base"
+                maxHeight="40%"
+                bg="#B7FFDC"
+                color="green.700"
+                fontWeight="small"
+                size="md"
               >
-                <Button
-                  boxShadow="base"
-                  maxHeight="40%"
-                  bg="#B7FFDC"
-                  color="green.700"
-                  fontWeight="small"
-                  minWidth="70%"
-                  size="lg"
-                >
-                  Share your feedback
-                </Button>
-              </a>
-            </VStack>
-            <Spacer />
-          </Flex>
+                Give Feedback
+              </Button>
+            </PopupButton>
+          </Center>
         </Flex>
       ),
       titleImage: "green_feedback.png",

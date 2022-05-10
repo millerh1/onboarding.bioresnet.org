@@ -199,7 +199,7 @@ export default function QuestBox() {
         pt="6"
         pb="6"
         borderRadius="5px"
-        minHeight="40vh"
+        minHeight="30vh"
         boxShadow="lg"
         border="1px"
         borderColor="gray.100"
@@ -215,15 +215,15 @@ export default function QuestBox() {
       pt="6"
       pb={["16", "16", "6"]}
       borderRadius="5px"
-      minHeight="40vh"
+      minHeight="30vh"
       boxShadow="lg"
       border="1px"
       borderColor="gray.100"
       width="100%"
       flex={1}
     >
-      <Grid templateRows="repeat(8, 1fr)" minHeight="inherit">
-        <GridItem rowSpan={7}>
+      <Grid templateRows="repeat(6, 1fr)" minHeight="inherit">
+        <GridItem rowSpan={5}>
           <Flex
             alignItems="stretch"
             flexDir="column"
@@ -255,7 +255,6 @@ export default function QuestBox() {
         <GridItem
           pb="20px"
           as={Flex}
-          rowSpan={2}
           flexDirection={["column", "column", "row"]}
         >
           <Spacer />

@@ -4,9 +4,9 @@ const defaultSEOConfig = {
   titleTemplate: "%s",
   defaultTitle: "LabDAO Onboarding",
   description: "LabDAO Onboarding",
-  canonical: "https://daoquest-labdao.vercel.app/",
+  canonical: "https://onboarding.labdao.com/",
   openGraph: {
-    url: "https://daoquest-labdao.vercel.app/",
+    url: "https://onboarding.labdao.com/",
     title: "LabDAO Onboarding",
     description: "LabDAO Onboarding",
     images: [],

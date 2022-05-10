@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 const NextSitemapConfig = {
-  siteUrl: "https://daoquest-labdao.vercel.app/",
+  siteUrl: "https://onboarding.labdao.com/",
   generateRobotsTxt: true,
 };
 

@@ -2,13 +2,32 @@
 
 Template is based on https://github.com/sozonome/nextarter-chakra.
 
-# Requirements
-Need NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY set.
+## Requirements
+
+You'll need these env files in a .env.local
+
+Check out the slack for the values.
+
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+
 
 # Resources
 ## FrontEnd
 TypeScript - https://www.typescriptlang.org/
 React - https://reactjs.org/
+
+# Available Scripts
+
+## Install dependencies
+```
+    yarn install
+```
+
+## Run App
+```
+    yarn start
+```
 
 Almost everything should be written in TypeScript. We should not need .css/.html files.
 
@@ -33,4 +52,3 @@ Vercel - https://vercel.com/
 
 ## Misc
 Commit Conventions following - https://www.conventionalcommits.org/en/v1.0.0/#summary
-
