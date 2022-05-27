@@ -27,18 +27,16 @@ const DESCI_CONTENT = [
   {
     title: "How does LabDAO fit into the DeSci space?",
     previewText:
-      "LabDAO is building the “execution layer” for decentralized science. ",
+      "LabDAO is using blockchain technology to: ",
     body: (
       <>
-        The tools we are building make it easier for scientists to provide
-        services to each other while ensuring ownership and provenance of their
-        data.
-        <br />
-        <br />
-        Just as Ethereum has been described as “the world computer in the sky”,
-        LabDAO is building the infrastructure for “the global lab in the sky”
-        that anyone will be able to use to do science—no matter where they’re
-        located.
+       <UnorderedList>
+         <ListItem>Give everyone the opportunity to **raise funds** for their scientific or entrepreneurial project</ListItem>
+         <ListItem>Enable everyone to **run laboratory services,** no matter where they are</ListItem>
+         <ListItem> **Share data and materials** in a new ways that reward inventors and create access</ListItem>
+       </UnorderedList>
+        The tools we are building make it easier for scientists to provide services to each other while ensuring ownership and provenance of their data. 
+          
       </>
     ),
   },
