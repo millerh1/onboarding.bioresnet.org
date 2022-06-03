@@ -6,23 +6,19 @@ const INTRO_CONTENT = [
   {
     title: "What is LabDAO?",
     previewText:
-      "Our mission is to accelerate life science innovation and collaboration.",
+      "LabDAO’s mission is to accelerate life science innovation and collaboration.",
     body: (
       <>
-        We are doing this by creating new mechanisms and markets for the
-        exchange of R&amp;D services and scientific data.
+        LabDAO is a decentralized science community developing a set of tools for scientists to coordinate online. These tools include:
         <br />
         <br />
-        Specifically, we're building an open-source &amp;
-        community-owned/operated/governed protocol where users can buy and sell
-        research contracts, run experiments with standardized protocols, find
-        collaborators, and securely exchange data. Initially focused on
-        computational work, we will eventually be the decentralized operating
-        system for wet and dry lab experiments.
+        <ol>
+          <li>An exchange for laboratory services</li>
+          <li>An onboarding and team-formation process</li>
+          <li>A funding ecosystem for scientific open-source developers</li>
+        </ol>
         <br />
         <br />
-        &quot;an open source protocol to act as the execution layer for
-        decentralized science&quot;
       </>
     ),
   },
