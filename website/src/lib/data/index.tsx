@@ -9,10 +9,12 @@ import {
   UnorderedList,
   ListItem,
   Spacer,
+  Link as ChakraLink
 } from "@chakra-ui/react";
 import { PopupButton } from "@typeform/embed-react";
 
 import { DAO, DeSci, Intro } from "lib/components/reading";
+import Link from "next/link";
 
 export enum QuestState {
   Done = 0,
@@ -352,12 +354,9 @@ export const QUESTS: IQuestCategory[] = [
       body: (isLocked?: boolean) => (
         <Flex flexGrow={1} flexDir="column" minHeight="full">
           <Text>
-            To help with joining our community, we'd like to get to know you and
-            your background a bit more! <br /> <br />
-            Tell us a bit about yourself so we can find the best place for you
-            to help with the goal of creating a better marketplace for biotech
-            and science.
-            <br /> <br />
+          Tell us a bit about yourself so we can help you connect to other members of LabDAO.
+          <br /> 
+          <br />
           </Text>
           <Flex flexGrow={1} flexDir="column" minHeight="full" minWidth="full">
             <Spacer />
@@ -401,45 +400,31 @@ export const QUESTS: IQuestCategory[] = [
       body: () => (
         <Flex flexGrow={1} flexDir="column" minHeight="full">
           <Text>
-            LabDAO is built and operated by members who make meaningful
-            contributions towards our mission. Smaller projects are easy to
-            start and join. Large projects that require funding to support the
-            work can be sponsored through a vote by the DAO.
+          In order to create better tools and systems to accelerate life sciences, LabDAO has a need for diverse members from a number of different backgrounds.
           </Text>
 
           <br />
 
-          <Text>Within the DAO we coordinate around a set of core tools:</Text>
+          <Text>The LabDAO community is organized through <b>LabTeams</b></Text>
 
           <br />
-          <UnorderedList>
-            <ListItem>
-              <Text as={chakra.span} fontWeight="bold">
-                Discord
-              </Text>{" "}
-              - for instant messaging, coordination and community announcements
-            </ListItem>
-            <ListItem>
-              <Text as={chakra.span} fontWeight="bold">
-                GitHub
-              </Text>{" "}
-              - to track contributions and establish a shared truth
-            </ListItem>
-            <ListItem>
-              <Text as={chakra.span} fontWeight="bold">
-                {" "}
-                Coordinape
-              </Text>{" "}
-              - for tracking contributions to the project in a peer-to-peer
-              fasion
-            </ListItem>
-          </UnorderedList>
+
+          <Text>LabTeams is an organizational model for LabDAO that allows any member to launch a virtual laboratory (a “web-lab”) within the LabDAO community.</Text>
+          
           <br />
 
           <Text>
-            To get started you’ll just need a Discord account. As you join
-            projects and participate more in the DAO you’ll be guided through
-            the Github and Coordinape onboarding process.
+          LabTeams allows members to self-organize in a structure that meets their needs and lets them focus on the topics they want to work on. Teams within LabDAO (called ‘Labs’) can be focused on both scientific fields (e.g. ‘proteomics lab’, ‘representation learning lab’) and operational tasks (e.g. ‘graphic design lab’).
+          </Text>
+
+          <br />
+
+          <Text>Learn more: 
+            <Link href="https://docs.labdao.xyz/lab-teams/what_are_labs" passHref>
+              <ChakraLink isExternal textDecoration="underline">
+                https://docs.labdao.xyz/lab-teams/what_are_labs
+              </ChakraLink>
+            </Link>{""}
           </Text>
         </Flex>
       ),
