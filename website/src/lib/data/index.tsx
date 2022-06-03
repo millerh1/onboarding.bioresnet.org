@@ -430,13 +430,13 @@ export const QUESTS: IQuestCategory[] = [
           <br />
 
           <Text>
-            Learn more:
+            Learn more{" "}
             <Link
               href="https://docs.labdao.xyz/lab-teams/what_are_labs"
               passHref
             >
               <ChakraLink isExternal textDecoration="underline">
-                https://docs.labdao.xyz/lab-teams/what_are_labs
+                <b>here</b>
               </ChakraLink>
             </Link>
             {}

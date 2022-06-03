@@ -71,7 +71,7 @@ const DAO_CONTENT = [
           A wallet
         </Heading>
         <br />
-        As you get more involved in LabDAO, having a
+        As you get more involved in LabDAO, having a{" "}
         <Link href="https://ethereum.org/en/wallets/" passHref>
           <ChakraLink isExternal textDecoration="underline">
             digital wallet
