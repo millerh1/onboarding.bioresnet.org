@@ -1,4 +1,4 @@
-import { ListItem, UnorderedList, Text } from "@chakra-ui/react";
+import { ListItem, UnorderedList } from "@chakra-ui/react";
 
 import Reading from "./reading";
 
@@ -9,7 +9,8 @@ const INTRO_CONTENT = [
       "LabDAO’s mission is to accelerate life science innovation and collaboration.",
     body: (
       <>
-        LabDAO is a decentralized science community developing a set of tools for scientists to coordinate online. These tools include:
+        LabDAO is a decentralized science community developing a set of tools
+        for scientists to coordinate online. These tools include:
         <br />
         <br />
         <ol>
@@ -24,71 +25,61 @@ const INTRO_CONTENT = [
   },
   {
     title: "Why LabDAO needed?",
-    previewText:
-      "We’re here to solve the problems with open source in biomedicine.",
+    previewText: "Open source in biomedicine needs a revamp.",
     body: (
       <>
-        The high cost of reproducing life science processes and the low
-        reliability of generating expected results has been a roadblock to open
-        source market dynamics in biomedicine. Specifically, we believe the
-        following problems hold back biomedicine today:
+        The high cost of executing life science protocols and the low
+        reproducibility of the resulting data has been a roadblock to open
+        source market dynamics in biomedicine. We believe this is the result of
+        several problems:
         <br />
         <br />
         <UnorderedList>
           <ListItem>
-            High cost and incentives around secrecy of implementing biomedical
-            tools
+            <b>Secrecy is highly incentivized</b> and this adds to the high cost
+            of implementing biomedical research tools
           </ListItem>
           <ListItem>
-            Lack of reproducibility of wet lab and dry lab biomedical tools
+            <b>A lack of standards</b> for wet lab and dry lab tools leads to
+            low reproducibility
           </ListItem>
           <ListItem>
-            Few open source communities maintaining and developing biomedical
-            tools
+            <b>Few open source communities</b> maintain and develop biomedical
+            research tools
           </ListItem>
           <br />
         </UnorderedList>
-        We are here to solve these problems with an open market for the
-        execution of biomedical experiments, by defining standards around
-        biomedical tools and incentivising contributors.{" "}
+        LabDAO is solving these problems by building an open market for the
+        execution of biomedical experiments, defining standards around
+        biomedical tools, and incentivizing contributions to these projects.
       </>
     ),
   },
   {
     title: "Who should join LabDAO?",
     previewText:
-      "A variety of people interested in technology, the scientific community and novel coordination.",
+      "LabDAO needs diverse members from many different backgrounds.",
     body: (
       <>
         In order to create better tools and systems to accelerate life sciences,
-        LabDAO has a need for diverse members from a number of different
-        backgrounds. The LabDAO community is currently organized thematically in
-        three working groups:
+        the LabDAO community needs a wide variety of perspectives.
         <br />
         <br />
-        <UnorderedList>
-          <ListItem>
-            <Text as="span" fontWeight="bold">
-              Technology working group{" "}
-            </Text>
-            - scientific application, infrastructure, and contract development
-          </ListItem>
-          <ListItem>
-            <Text as="span" fontWeight="bold">
-              Community working group
-            </Text>
-            - communications, onboarding and community building
-          </ListItem>
-          <ListItem>
-            <Text as="span" fontWeight="bold">
-              Coordination working group
-            </Text>
-            - mechanism design, token economics and legal questions
-          </ListItem>
-          <br />
-        </UnorderedList>
+        The DAO brings together <b>scientists</b>, <b>inventors</b> and{" "}
+        <b>entrepreneurs</b> to meet new labmates with similar interests and
+        goals.
+        <br />
+        <br />
+        You are well suited for LabDAO if you’re curious about or have
+        experience in topics such as: Open source science, Web3, DAOs,
+        coordination, knowledge graphs, tokenomics & incentives, finding better
+        solutions for funding research, building global scientific communities
+        or decentralizing science.
+        <br />
+        <br />
         If you’re interested in any of these topics or have other skills you’d
-        like to contribute to the DAO you’re in the right place to get started.
+        like to contribute to the DAO:{" "}
+        <b>you’re in the right place to get started.</b>
       </>
     ),
   },
