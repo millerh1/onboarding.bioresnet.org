@@ -2,15 +2,14 @@ import {
   Center,
   Box,
   Flex,
-  chakra,
   VStack,
   Text,
   Button,
-  UnorderedList,
-  ListItem,
   Spacer,
+  Link as ChakraLink,
 } from "@chakra-ui/react";
 import { PopupButton } from "@typeform/embed-react";
+import Link from "next/link";
 
 import { DAO, DeSci, Intro } from "lib/components/reading";
 
@@ -352,12 +351,10 @@ export const QUESTS: IQuestCategory[] = [
       body: (isLocked?: boolean) => (
         <Flex flexGrow={1} flexDir="column" minHeight="full">
           <Text>
-            To help with joining our community, we'd like to get to know you and
-            your background a bit more! <br /> <br />
-            Tell us a bit about yourself so we can find the best place for you
-            to help with the goal of creating a better marketplace for biotech
-            and science.
-            <br /> <br />
+            Tell us a bit about yourself so we can help you connect to other
+            members of LabDAO.
+            <br />
+            <br />
           </Text>
           <Flex flexGrow={1} flexDir="column" minHeight="full" minWidth="full">
             <Spacer />
@@ -401,58 +398,61 @@ export const QUESTS: IQuestCategory[] = [
       body: () => (
         <Flex flexGrow={1} flexDir="column" minHeight="full">
           <Text>
-            LabDAO is built and operated by members who make meaningful
-            contributions towards our mission. Smaller projects are easy to
-            start and join. Large projects that require funding to support the
-            work can be sponsored through a vote by the DAO.
+            In order to create better tools and systems to accelerate life
+            sciences, LabDAO has a need for diverse members from a number of
+            different backgrounds.
           </Text>
 
           <br />
 
-          <Text>Within the DAO we coordinate around a set of core tools:</Text>
+          <Text>
+            The LabDAO community is organized through <b>LabTeams</b>
+          </Text>
 
-          <br />
-          <UnorderedList>
-            <ListItem>
-              <Text as={chakra.span} fontWeight="bold">
-                Discord
-              </Text>{" "}
-              - for instant messaging, coordination and community announcements
-            </ListItem>
-            <ListItem>
-              <Text as={chakra.span} fontWeight="bold">
-                GitHub
-              </Text>{" "}
-              - to track contributions and establish a shared truth
-            </ListItem>
-            <ListItem>
-              <Text as={chakra.span} fontWeight="bold">
-                {" "}
-                Coordinape
-              </Text>{" "}
-              - for tracking contributions to the project in a peer-to-peer
-              fasion
-            </ListItem>
-          </UnorderedList>
           <br />
 
           <Text>
-            To get started you’ll just need a Discord account. As you join
-            projects and participate more in the DAO you’ll be guided through
-            the Github and Coordinape onboarding process.
+            LabTeams is an organizational model for LabDAO that allows any
+            member to launch a virtual laboratory (a “web-lab”) within the
+            LabDAO community.
+          </Text>
+
+          <br />
+
+          <Text>
+            LabTeams allows members to self-organize in a structure that meets
+            their needs and lets them focus on the topics they want to work on.
+            Teams within LabDAO (called ‘Labs’) can be focused on both
+            scientific fields (e.g. ‘proteomics lab’, ‘representation learning
+            lab’) and operational tasks (e.g. ‘graphic design lab’).
+          </Text>
+
+          <br />
+
+          <Text>
+            Learn more{" "}
+            <Link
+              href="https://docs.labdao.xyz/lab-teams/what_are_labs"
+              passHref
+            >
+              <ChakraLink isExternal textDecoration="underline">
+                <b>here</b>
+              </ChakraLink>
+            </Link>
+            {}
           </Text>
         </Flex>
       ),
     },
   },
   {
-    listTitle: "Connect with our community",
+    listTitle: "Connect with your community",
     image_unlocked: GREEN_HEADS_IMAGE,
     image_locked: GRAY_HEADS_IMAGE,
     content: {
       id: TELL_US_CATEGORY_ID,
       titleImage: GREEN_HEADS_IMAGE,
-      title: "Connect with our community",
+      title: "Connect with your community",
       body: () => (
         <Flex flexGrow={1} flexDir="column" minHeight="full">
           <Text>Let’s get you set up in the LabDAO community</Text>
@@ -521,26 +521,31 @@ export const QUESTS: IQuestCategory[] = [
         },
       },
       {
-        listTitle: "Your first contribution",
+        listTitle: "Meet the LabDAO community",
         content: {
           id: "fead500e-63b5-4b39-bc54-0851dd886d6a",
-          title: "Your first contribution",
+          title: "Meet the LabDAO community",
           type: QuestType.Complete,
           completeParentId: TELL_US_CATEGORY_ID,
           body: () => (
             <Flex flexGrow={1} flexDir="column" minHeight="full">
               <Text>
-                You've made it far traveller!
+                You've made it far, traveller!
                 <br />
                 <br />
-                Now that you're familiar with LabDAO, you’re ready to join the
-                Discord and start exploring how you can contribute to new or
-                existing project teams.
+                Now that you’re familiar with LabDAO, you’re ready to join the{" "}
+                <Link href="https://discord.gg/DjqjZjy" passHref>
+                  <ChakraLink isExternal textDecoration="underline">
+                    Discord
+                  </ChakraLink>
+                </Link>{" "}
+                and start exploring how you can contribute to new or existing
+                LabDAO projects.
                 <br />
                 <br />
                 <Text fontWeight="bold">
-                  Introduce yourself in the #introductions channel and explore
-                  what’s going on within your working group of choice.
+                  Click on the #Start-here channel on the top left corner of the
+                  Discord to find your LabDAO community.
                 </Text>
               </Text>
             </Flex>

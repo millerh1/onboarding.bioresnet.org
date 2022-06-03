@@ -31,19 +31,20 @@ const DESCI_CONTENT = [
       <>
         <UnorderedList>
           <ListItem>
-            Give everyone the opportunity to **raise funds** for their
+            Give everyone the opportunity to <b>raise funds</b> for their
             scientific or entrepreneurial project
           </ListItem>
           <ListItem>
-            Enable everyone to **run laboratory services,** no matter where they
-            are
+            Enable everyone to <b>run laboratory services</b>, no matter where
+            they are
           </ListItem>
           <ListItem>
             {" "}
-            **Share data and materials** in a new ways that reward inventors and
-            create access
+            <b>Share data and materials</b> in a new ways that reward inventors
+            and create access
           </ListItem>
         </UnorderedList>
+        <br />
         The tools we are building make it easier for scientists to provide
         services to each other while ensuring ownership and provenance of their
         data.
