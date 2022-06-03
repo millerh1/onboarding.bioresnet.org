@@ -31,35 +31,68 @@ const DAO_CONTENT = [
         managed, are deployed with the voted approval of the DAO.
         <br />
         <br />
-        What exactly a DAO is (and what a DAO isn’t) is a currently the topic of
-        much debate.
+        At LabDAO, that means that members of the DAO (who will own the
+        not-yet-launched $LAB tokens) will have a say in the major decisions
+        that are made about governance, funds, etc.
       </>
     ),
   },
   {
-    title: "What's Discord?",
+    title: "What tools do you need to participate in LabDAO?",
     previewText:
       "The first tool you’ll need to get in touch with other members of LabDAO.",
     body: (
       <>
+        <h2>Discord</h2>
+        LabDAO currently uses{" "}
         <Link href="https://discord.com" passHref>
           <ChakraLink isExternal textDecoration="underline">
             Discord
           </ChakraLink>
         </Link>{" "}
-        is functionally similar to Slack, but it has a bit more modularity.
+        for communication between DAO members.
         <br />
         <br />
-        Download Discord and create and account{" "}
+        Discord is functionally similar to Slack, but it has a bit more
+        modularity.
+        <br />
+        <br />
+        To meet other members of the community and explore ongoing projects,
+        download Discord and create and account{" "}
         <Link href="https://discord.com" passHref>
           <ChakraLink isExternal textDecoration="underline">
             here
           </ChakraLink>
         </Link>
-        . Once you’ve created an account your Discord username will be in the
-        format: username#1234 keep this username handy, we’ll ask you for it
-        soon.
+        .
         <br />
+        <br />
+        Once you’ve created an account and downloaded the app, open Discord and
+        click on your username next to your avatar on the bottom left corner.
+        This will automatically copy your username/ID (which will look like
+        ‘Name#1234’).{" "}
+        <b>Keep this username handy, we’ll ask you for it soon.</b>
+        <br />
+        <br />
+        <h2>A wallet</h2>
+        As you get more involved in LabDAO, having a
+        <Link href="https://ethereum.org/en/wallets/" passHref>
+          <ChakraLink isExternal textDecoration="underline">
+            digital wallet
+          </ChakraLink>
+        </Link>{" "}
+        such as{" "}
+        <Link href="https://metamask.io/" passHref>
+          <ChakraLink isExternal textDecoration="underline">
+            MetaMask
+          </ChakraLink>
+        </Link>{" "}
+        will be important for allowing you to vote on community proposals,
+        connect to other applications and get rewarded for your contributions.
+        <br />
+        <br />
+        If you don’t have already have a wallet we recommend first finishing
+        your LabDAO onboarding before creating one.
       </>
     ),
   },
