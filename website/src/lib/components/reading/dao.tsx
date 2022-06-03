@@ -1,4 +1,4 @@
-import { Link as ChakraLink } from "@chakra-ui/react";
+import { Heading, Link as ChakraLink } from "@chakra-ui/react";
 import Link from "next/link";
 
 import Reading from "./reading";
@@ -12,23 +12,18 @@ const DAO_CONTENT = [
       <>
         <Link href="https://ethereum.org/en/dao/" passHref>
           <ChakraLink isExternal textDecoration="underline">
-            Decentralized autonomous organizations (DAOs)
+            DAOs
           </ChakraLink>
         </Link>{" "}
         are "an effective and safe way to work with like-minded folks around the
-        globe."
+        globe." Members of a DAO own and manage the organization using
+        governance systems (such as voting and proposals). The rules of a DAO
+        are ingrained in the code on which it runs.
         <br />
         <br />
-        Members of a DAO own and manage the organization using governance
-        systems (such as voting and proposals).
-        <br />
-        <br />
-        The rules of a DAO are ingrained in the code on which it runs.
-        <br />
-        <br />
-        A DAO’s smart contracts (programs run on blockchain computers), which
-        often help determine how the group’s treasury and governance systems are
-        managed, are deployed with the voted approval of the DAO.
+        A DAO’s smart contracts (code that runs on a blockchain) are deployed
+        with the voted approval of the DAO and often help determine how the
+        group's treasury and governance sysstems are managed.
         <br />
         <br />
         At LabDAO, that means that members of the DAO (who will own the
@@ -43,22 +38,20 @@ const DAO_CONTENT = [
       "The first tool you’ll need to get in touch with other members of LabDAO.",
     body: (
       <>
-        <h2>Discord</h2>
+        <Heading as="h3" size="md">
+          Discord
+        </Heading>
+        <br />
         LabDAO currently uses{" "}
         <Link href="https://discord.com" passHref>
           <ChakraLink isExternal textDecoration="underline">
             Discord
           </ChakraLink>
         </Link>{" "}
-        for communication between DAO members.
-        <br />
-        <br />
-        Discord is functionally similar to Slack, but it has a bit more
-        modularity.
-        <br />
-        <br />
-        To meet other members of the community and explore ongoing projects,
-        download Discord and create and account{" "}
+        for communication between DAO members. Discord is functionally similar
+        to Slack, but it has a bit more modularity. To meet other members of the
+        community and explore ongoing projects, download Discord and create and
+        account{" "}
         <Link href="https://discord.com" passHref>
           <ChakraLink isExternal textDecoration="underline">
             here
@@ -74,7 +67,10 @@ const DAO_CONTENT = [
         <b>Keep this username handy, we’ll ask you for it soon.</b>
         <br />
         <br />
-        <h2>A wallet</h2>
+        <Heading as="h3" size="md">
+          A wallet
+        </Heading>
+        <br />
         As you get more involved in LabDAO, having a
         <Link href="https://ethereum.org/en/wallets/" passHref>
           <ChakraLink isExternal textDecoration="underline">

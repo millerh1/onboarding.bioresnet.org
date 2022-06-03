@@ -16,7 +16,9 @@ const INTRO_CONTENT = [
         <OrderedList>
           <ListItem>An exchange for laboratory services</ListItem>
           <ListItem>An onboarding and team-formation process</ListItem>
-          <ListItem>A funding ecosystem for scientific open-source developers</ListItem>
+          <ListItem>
+            A funding ecosystem for scientific open-source developers
+          </ListItem>
         </OrderedList>
         <br />
         <br />
