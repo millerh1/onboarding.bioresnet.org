@@ -1,4 +1,4 @@
-import { ListItem, UnorderedList } from "@chakra-ui/react";
+import { ListItem, OrderedList, UnorderedList } from "@chakra-ui/react";
 
 import Reading from "./reading";
 
@@ -13,18 +13,18 @@ const INTRO_CONTENT = [
         for scientists to coordinate online. These tools include:
         <br />
         <br />
-        <ol>
-          <li>An exchange for laboratory services</li>
-          <li>An onboarding and team-formation process</li>
-          <li>A funding ecosystem for scientific open-source developers</li>
-        </ol>
+        <OrderedList>
+          <ListItem>An exchange for laboratory services</ListItem>
+          <ListItem>An onboarding and team-formation process</ListItem>
+          <ListItem>A funding ecosystem for scientific open-source developers</ListItem>
+        </OrderedList>
         <br />
         <br />
       </>
     ),
   },
   {
-    title: "Why LabDAO needed?",
+    title: "Why is LabDAO needed?",
     previewText: "Open source in biomedicine needs a revamp.",
     body: (
       <>
@@ -71,11 +71,18 @@ const INTRO_CONTENT = [
         <br />
         <br />
         You are well suited for LabDAO if you’re curious about or have
-        experience in topics such as: Open source science, Web3, DAOs,
-        coordination, knowledge graphs, tokenomics & incentives, finding better
-        solutions for funding research, building global scientific communities
-        or decentralizing science.
-        <br />
+        experience in topics such as:
+        <UnorderedList>
+          <ListItem>Open source science</ListItem>
+          <ListItem>Web3</ListItem>
+          <ListItem>DAOs</ListItem>
+          <ListItem>Coordination</ListItem>
+          <ListItem>Knowledge graphs</ListItem>
+          <ListItem>Tokenomics and incentives</ListItem>
+          <ListItem>Finding better solutions for funding research</ListItem>
+          <ListItem>Building global scientific communities</ListItem>
+          <ListItem>Decentralizing science</ListItem>
+        </UnorderedList>
         <br />
         If you’re interested in any of these topics or have other skills you’d
         like to contribute to the DAO:{" "}
