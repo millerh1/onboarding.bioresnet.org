@@ -534,7 +534,7 @@ export const QUESTS: IQuestCategory[] = [
                 <br />
                 <br />
                 Now that you’re familiar with LabDAO, you’re ready to join the{" "}
-                <Link href="https://discord.gg/DjqjZjy" passHref>
+                <Link href="https://discord.gg/labdao" passHref>
                   <ChakraLink isExternal textDecoration="underline">
                     Discord
                   </ChakraLink>
