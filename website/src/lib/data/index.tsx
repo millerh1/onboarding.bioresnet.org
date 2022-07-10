@@ -574,8 +574,8 @@ export const QUESTS: IQuestCategory[] = [
             what could be improved.
             <br />
             <br />
-            Reach out to us through the typeform below with some meaningful
-            feedback, and you’ll earn the Always Improving badge below.
+            Reach out to us using the questionnaire below with some meaningful
+            feedback, and you’ll earn the Always Improving badge.
           </Text>
           <br />
           <Center>
