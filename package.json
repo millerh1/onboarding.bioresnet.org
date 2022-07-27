@@ -1,5 +1,5 @@
 {
-  "name": "labdao-onboarding",
+  "name": "brn-onboarding",
   "version": "0.1.0",
   "private": true,
   "author": "sozonome",
@@ -16,7 +16,7 @@
     "up-latest": "yarn up --latest",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main",
-    "prepare": "cd ../../../ && husky install daoquest/labdao/website/.husky"
+    "prepare": "husky install .husky"
   },
   "dependencies": {
     "@chakra-ui/icons": "^1.1.7",
